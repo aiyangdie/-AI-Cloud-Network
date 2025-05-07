@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾智云网络 - 专业数字服务提供商</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #64748b;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --card-bg: #ffffff;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .slogan {
+            font-size: 1.3rem;
+            margin-top: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        nav {
+            background: var(--card-bg);
+            margin: 0;
+            width: 100%;
+            padding: 0 0 0 40px;
+            border-radius: 0;
+            display: flex;
+            justify-content: flex-start;
+            gap: 40px;
+            box-shadow: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 36px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        nav a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            align-items: stretch;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .service-card .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.85;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s ease;
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        .service-card:hover .image {
+            opacity: 0.95;
+            transform: scale(1.05);
+            filter: brightness(0.85) contrast(1.15);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0.1) 0%,
+                rgba(0,0,0,0.3) 50%,
+                rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            padding: 0 20px;
+            background: linear-gradient(to right, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        .service-card p {
+            position: relative;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-weight: 500;
+            max-width: 90%;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
+        .service-card .visit-link {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            margin: 0 20px 20px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            align-self: flex-start;
+        }
+
+        .service-card:hover .visit-link {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .service-card.shop .image {
+            background-image: url('images/image.png');
+            filter: brightness(0.85) contrast(1.1) saturate(1.1);
+        }
+
+        .service-card.blog .image {
+            background-image: url('images/image copy.png');
+            filter: brightness(0.8) contrast(1.15) saturate(1.05);
+        }
+
+        .service-card.nav .image {
+            background-image: url('images/image copy 2.png');
+            filter: brightness(0.85) contrast(1.1) saturate(1.1);
+        }
+
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+            padding: 20px;
+        }
+
+        .intro-text::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--secondary);
+            background: var(--card-bg);
+            margin-top: 80px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .info-section {
+            display: block;
+            max-width: 900px;
+            margin: 30px auto 0;
+            padding: 0 20px;
+            background: linear-gradient(135deg, #fff 80%, #f3f6fd 100%);
+            border-radius: 22px;
+            border: 1px solid #ececec;
+            box-shadow: 0 8px 32px rgba(99,102,241,0.07), 0 1.5px 6px rgba(99,102,241,0.04);
+            position: relative;
+            transition: max-height 0.6s cubic-bezier(.4,0,.2,1), opacity 0.4s cubic-bezier(.4,0,.2,1), padding 0.4s cubic-bezier(.4,0,.2,1);
+            overflow: hidden;
+            opacity: 0;
+            max-height: 0;
+        }
+        .info-section.active {
+            opacity: 1;
+            max-height: 900px;
+            padding: 48px 40px 36px 40px;
+            transition: max-height 0.6s cubic-bezier(.4,0,.2,1), opacity 0.4s cubic-bezier(.4,0,.2,1), padding 0.4s cubic-bezier(.4,0,.2,1);
+        }
+        .info-section h2 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #6366f1 30%, #4f46e5 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            text-align: center;
+            position: relative;
+            text-shadow: 0 2px 8px rgba(99,102,241,0.08);
+            margin-bottom: 10px;
+        }
+        .info-section h2::after {
+            content: '';
+            display: block;
+            margin: 14px auto 0 auto;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+        }
+        .info-section p, .info-section .info-flex, .info-section .donate-rank {
+            transition: opacity 0.4s cubic-bezier(.4,0,.2,1);
+        }
+        .info-section:not(.active) h2, .info-section:not(.active) p, .info-section:not(.active) .info-flex, .info-section:not(.active) .donate-rank {
+            opacity: 0;
+        }
+        .info-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .info-block {
+            flex: 1;
+            min-width: 180px;
+            color: var(--secondary);
+            font-size: 1.13rem;
+            line-height: 2.1;
+            padding: 16px 0 0 0;
+        }
+        .info-block svg {
+            width: 1.1em;
+            height: 1.1em;
+            margin-right: 7px;
+            vertical-align: -0.18em;
+            opacity: 0.7;
+        }
+        .info-qrcodes {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .info-qrcodes img {
+            width: 180px;
+            height: 180px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.10);
+            margin-bottom: 10px;
+            background: #f8fafc;
+            object-fit: cover;
+            border: 1.5px solid #ececec;
+            transition: box-shadow 0.3s;
+        }
+        .info-qrcodes img:hover {
+            box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+        }
+        .qrcode-tip {
+            font-size: 0.92em;
+            color: #8a99b3;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            opacity: 0.85;
+            text-shadow: 0 1px 2px rgba(99,102,241,0.07);
+            border-radius: 8px;
+            padding: 2px 8px;
+            background: rgba(99,102,241,0.03);
+            display: inline-block;
+        }
+        .info-qrcodes > div {
+            background: linear-gradient(135deg, #f8fafc 80%, #e8eafd 100%);
+            padding: 18px 12px 12px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(99,102,241,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+            border: 1.5px solid #f0f1f7;
+            transition: box-shadow 0.25s, border 0.25s;
+        }
+        .info-qrcodes > div:hover {
+            box-shadow: 0 8px 32px rgba(99,102,241,0.13);
+            border: 1.5px solid #6366f1;
+            background: #f4f7fd;
+        }
+        .donate-rank {
+            background: #f7f8fa;
+            border-radius: 14px;
+            box-shadow: 0 1px 8px rgba(99,102,241,0.08);
+            padding: 14px 12px 10px 12px;
+            margin-top: 10px;
+            border: 1px solid #ececec;
+            text-align: left;
+        }
+        .donate-rank h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            text-align: left;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-bottom: 1px solid #ececec;
+            padding-bottom: 4px;
+        }
+        .donate-rank ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            text-align: left;
+        }
+        .donate-rank li {
+            display: flex !important;
+            align-items: center !important;
+            gap: 2px;
+            border-radius: 3px;
+            padding: 0 1px;
+            margin-bottom: 1px;
+            font-weight: 400;
+            font-size: 0.89em;
+            color: #888;
+            background: none !important;
+            box-shadow: none !important;
+            position: relative;
+            line-height: 1.25;
+            justify-content: flex-start;
+        }
+        .donate-rank li .trophy {
+            flex-shrink: 0;
+            width: 0.85em;
+            height: 0.85em;
+            margin-right: 2px;
+        }
+        .donate-rank li .amount {
+            font-size: 0.88em;
+            color: #bbb;
+            margin-left: 2px;
+            font-weight: 400;
+        }
+        .donate-rank li:hover {
+            background: #eceffd !important;
+            color: #4f46e5 !important;
+        }
+        .donate-rank .trophy {
+            width: 1.2em;
+            height: 1.2em;
+            vertical-align: -0.18em;
+            margin-right: 5px;
+        }
+        .info-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg,#e0e7ff 60%,#c7d2fe 100%);
+            border: none;
+            color: var(--primary-dark);
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            transition: background 0.2s, color 0.2s, transform 0.3s;
+            box-shadow: 0 1px 4px rgba(99,102,241,0.10);
+        }
+        .info-close:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: rotate(90deg) scale(1.08);
+        }
+        @media (max-width: 768px) {
+            .info-flex {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .info-qrcodes {
+                justify-content: center;
+            }
+            .info-section.active {
+                padding: 14px 2vw 8px 2vw;
+            }
+            .donate-rank {
+                margin-top: 18px;
+            }
+            .info-section {
+                border-radius: 18px;
+                box-shadow: 0 4px 16px rgba(99,102,241,0.06);
+            }
+        }
+        @media (max-width: 900px) {
+            .info-section > div[style*='display: flex'] {
+                flex-direction: column !important;
+                gap: 18px !important;
+            }
+            .info-qrcodes {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" target="_self">首页</a>
+        <a href="#" id="contact-link" target="_self">联系我们</a>
+        <a href="#" id="about-link" target="_self">关于我们</a>
+        <a href="#" id="donate-link" target="_self">捐款</a>
+        <span style="flex:1"></span>
+        <a href="https://github.com/aiyangdie" target="_blank" style="display:flex;align-items:center;padding:0 16px 0 8px;">
+            <svg height="24" viewBox="0 0 16 16" width="24" fill="#64748b" style="vertical-align:middle;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </a>
+    </nav>
+    <header>
+        <h1>艾智云</h1>
+        <div class="slogan">智慧互联，云享未来</div>
+    </header>
+
+    <div id="about-section" class="info-section">
+        <h2>关于我们</h2>
+        <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+            <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                <h3 style="color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 15px; font-weight: 600;">我们的使命</h3>
+                <p style="color: var(--secondary); font-size: 1.15rem; line-height: 1.8; margin-bottom: 0;">
+                    艾智云致力于为用户提供高品质的互联网服务，涵盖智能商城、技术博客与精选导航。我们专注于技术创新与用户体验，持续优化产品与服务，帮助用户高效、安全地享受数字生活。
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                <h3 style="color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 15px; font-weight: 600;">我们的承诺</h3>
+                <p style="color: var(--secondary); font-size: 1.15rem; line-height: 1.8; margin-bottom: 0;">
+                    我们的团队拥有丰富的行业经验，秉承专业、诚信、创新的理念，为每一位用户提供贴心的支持与保障。选择艾智云，让互联网服务更简单、更可靠。
+                </p>
+            </div>
+        </div>
+        <button class="info-close" id="about-close">×</button>
+    </div>
+
+    <div id="contact-section" class="info-section">
+        <h2>联系我们</h2>
+        <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+            <div style="display: flex; gap: 32px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 260px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 32px 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <h3 style="color: var(--primary-dark); font-size: 1.3rem; margin-bottom: 18px; font-weight: 700;">联系方式</h3>
+                    <div class="info-block" style="padding: 0; font-size: 1.08rem;">
+                        <p style="margin-bottom: 14px; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="#63b450" style="width: 1.2em; height: 1.2em; vertical-align: -0.2em; margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>微信：AIKE-1015</p>
+                        <p style="margin-bottom: 14px; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="#0099ff" style="width: 1.2em; height: 1.2em; vertical-align: -0.2em; margin-right: 8px;"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="10" fill="#fff">QQ</text></svg>1409570162</p>
+                        <p style="margin-bottom: 0; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="#6366f1" style="width: 1.2em; height: 1.2em; vertical-align: -0.2em; margin-right: 8px;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 20V8.99l8 7 8-7V20H4z"/></svg>aike1015@qq.com</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 24px; align-items: center;">
+                    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 18px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <img src="images/wechat.png" alt="微信二维码" style="width: 180px; height: 180px; border-radius: 12px; object-fit: cover;" />
+                        <div class="qrcode-tip">微信二维码</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 18px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <img src="images/qq.png" alt="QQ二维码" style="width: 180px; height: 180px; border-radius: 12px; object-fit: cover;" />
+                        <div class="qrcode-tip">QQ二维码</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="info-close" id="contact-close">×</button>
+    </div>
+
+    <div id="donate-section" class="info-section">
+        <h2>捐款支持</h2>
+        <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+            <div style="display: flex; gap: 32px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <div style="display: flex; gap: 24px; align-items: center;">
+                    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 18px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <img src="images/wechat_donate.png" alt="微信赞赏码" style="width: 180px; height: 180px; border-radius: 12px; object-fit: cover;" />
+                        <div class="qrcode-tip">微信赞赏码</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 18px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <img src="images/alipay.png" alt="支付宝二维码" style="width: 180px; height: 180px; border-radius: 12px; object-fit: cover;" />
+                        <div class="qrcode-tip">支付宝二维码</div>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 260px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 32px 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <h3 style="color: var(--primary-dark); font-size: 1.3rem; margin-bottom: 18px; font-weight: 700;">捐款排行榜</h3>
+                    <ul style="list-style:none;padding-left:0;margin:0;">
+                        <li class="top1"><svg class="trophy" viewBox="0 0 24 24" fill="#f59e42" width="14" height="14" style="vertical-align:-0.18em;margin-right:2px;"><path d="M12 2C7.03 2 3 6.03 3 11c0 3.87 2.69 7.16 6.39 7.86.41.07.61-.18.61-.41v-1.45c-2.6.56-3.15-1.25-3.15-1.25-.37-.94-.9-1.19-.9-1.19-.74-.5.06-.49.06-.49.82.06 1.25.84 1.25.84.73 1.25 1.91.89 2.38.68.07-.53.29-.89.53-1.1-2.08-.24-4.27-1.04-4.27-4.62 0-1.02.36-1.85.95-2.5-.1-.24-.41-1.2.09-2.5 0 0 .78-.25 2.55.95.74-.21 1.53-.32 2.32-.32.79 0 1.58.11 2.32.32 1.77-1.2 2.55-.95 2.55-.95.5 1.3.19 2.26.09 2.5.59.65.95 1.48.95 2.5 0 3.59-2.19 4.38-4.28 4.62.3.26.56.77.56 1.55v2.3c0 .23.2.48.61.41C18.31 18.16 21 14.87 21 11c0-4.97-4.03-9-9-9z"/></svg>阿卜杜热合曼 <span class="amount">- ¥20</span></li>
+                        <li class="top2"><svg class="trophy" viewBox="0 0 24 24" fill="#b0b0b0" width="14" height="14" style="vertical-align:-0.18em;margin-right:2px;"><circle cx="12" cy="12" r="10"/></svg>古丽娜尔 <span class="amount">- ¥15</span></li>
+                        <li class="top3"><svg class="trophy" viewBox="0 0 24 24" fill="#c9894b" width="14" height="14" style="vertical-align:-0.18em;margin-right:2px;"><circle cx="12" cy="12" r="10"/></svg>麦麦提江 <span class="amount">- ¥10</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button class="info-close" id="donate-close">×</button>
+    </div>
+
+    <div class="container">
+        <div class="services">
+            <a href="https://xc.aike.ink" target="_blank" class="service-card shop">
+                <div class="image"></div>
+                <h3>智能商城</h3>
+                <p>精选手机产品专业售后保障</p>
+            </a>
+
+            <a href="https://aiyang.aike.ink/" target="_blank" class="service-card blog">
+                <div class="image"></div>
+                <h3>技术博客</h3>
+                <p>分享实用教程解决技术难题</p>
+            </a>
+
+            <a href="https://x.aikex.ink/" target="_blank" class="service-card nav">
+                <div class="image"></div>
+                <h3>精选导航</h3>
+                <p>优质网站资源高效便捷访问</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+    const aboutSection = document.getElementById('about-section');
+    const aboutLink = document.getElementById('about-link');
+    const aboutClose = document.getElementById('about-close');
+    const contactSection = document.getElementById('contact-section');
+    const contactLink = document.getElementById('contact-link');
+    const contactClose = document.getElementById('contact-close');
+    const donateSection = document.getElementById('donate-section');
+    const donateLink = document.getElementById('donate-link');
+    const donateClose = document.getElementById('donate-close');
+
+    aboutLink.onclick = function(e) {
+        e.preventDefault();
+        aboutSection.classList.toggle('active');
+        contactSection.classList.remove('active');
+        donateSection.classList.remove('active');
+    };
+    aboutClose.onclick = function() {
+        aboutSection.classList.remove('active');
+    };
+    contactLink.onclick = function(e) {
+        e.preventDefault();
+        contactSection.classList.toggle('active');
+        aboutSection.classList.remove('active');
+        donateSection.classList.remove('active');
+    };
+    contactClose.onclick = function() {
+        contactSection.classList.remove('active');
+    };
+    donateLink.onclick = function(e) {
+        e.preventDefault();
+        donateSection.classList.toggle('active');
+        aboutSection.classList.remove('active');
+        contactSection.classList.remove('active');
+    };
+    donateClose.onclick = function() {
+        donateSection.classList.remove('active');
+    };
+    </script>
+
+    <footer class="footer">
+        <div>&copy; 2025 艾智云网络 All Rights Reserved. | 专注高品质数字化解决方案</div>
+    </footer>
+</body>
+</html> 
